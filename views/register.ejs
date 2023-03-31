@@ -38,7 +38,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text"><img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/24/null/external-user-user-tanah-basah-glyph-tanah-basah-4.png"/></span>
                     <div class="form-floating">
-                      <input name="vv" type="text" class="form-control"  placeholder="Username">
+                      <input name="username" type="text" class="form-control"  placeholder="Username">
                       <label>Username</label>
                     </div>
                   </div>
@@ -62,7 +62,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text"><img src="https://img.icons8.com/material-rounded/24/null/mail.png"/></span>
                     <div class="form-floating">
-                      <input name="username" type="email" class="form-control" id="floatingInputGroup1" placeholder="xxxxx@gmail.com">
+                      <input name="email" type="email" class="form-control" id="floatingInputGroup1" placeholder="xxxxx@gmail.com">
                       <label for="floatingInputGroup1">EMail ID</label>
                     </div>
 
@@ -75,6 +75,7 @@
                     <div class="form-floating">
                       <input name="phoneno" type="text" class="form-control" id="floatingInputGroup1" placeholder="xxxxx xxxxx">
                       <label for="floatingInputGroup1">Phone number</label>
+                      <input name="role" style="display: none;" value="Plant" class="form-control">    
                     </div>
                   </div>
             </div>
@@ -83,7 +84,7 @@
                   <span class="input-group-text"><img src="https://img.icons8.com/ios/24/null/map-marker--v1.png"/></span>
                   <div class="form-floating">
                     <input id="pac-input" class="input-group-text form-control" type="text" name="plantAddress" placeholder="Drop"></div>  
-   
+                    <input type="text" id="plantCords" style="display: none;" name="plantCords" class="input-group-text"  value= "">
       
                   </div>
                   <div id="infowindow-content">
@@ -95,10 +96,13 @@
                     
                     </div> 
                 </div>
+                <div class="col-lg-3">
+                  <button class="btn btn-success" type="submit">Register</button> 
+                </div>
           </div>
         </div>
         
-        <button class="btn btn-success" type="submit">Register</button> 
+      
          </form>
     </div>
 
@@ -184,7 +188,7 @@ function initMap() {
       const pLat = place.geometry.location.lat();
       const pLng = place.geometry.location.lng();
       const Pll = pLat + "," + pLng;
-      document.getElementById("pickUpLatLng").value =  Pll  ;
+      document.getElementById("plantCords").value =  Pll  ;
       console.log(Pll);
    
     } else {

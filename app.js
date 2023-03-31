@@ -42,28 +42,60 @@ mongoose.connect( "mongodb+srv://bpatharun:tharun123@cluster1.3v7i9cn.mongodb.ne
 
 ///Schemas here
 
+const loginSchema= new mongoose.Schema({
+  userID: String,
+  role: {
+    type: String, default:"" 
+  },
+    username:String,
+    password:String
+
+  });
+
+
 const plantSchema = new mongoose.Schema({
   plnatID: {
     type: String, default:"" 
   },
   role: {
-    type: String, default:"PLANT" 
+    type: String, default:"" 
   },
     username:String,
     password:String,
     name: String,
     email:String,
-    phoneno:String 
+    phoneno:String ,
+    plantCords: String
   });
   
 
 
-  plantSchema.plugin(passportLocalMongoose);
-  plantSchema.plugin(findOrCreate);
+  const hospitalSchema = new mongoose.Schema({
+    plnatID: {
+      type: String, default:"" 
+    },
+    role: {
+      type: String, default:"" 
+    },
+      username:String,
+      password:String,
+      name: String,
+      email:String,
+      phoneno:String ,
+      plantCords: String
+    });
+    
+
+
+  loginSchema.plugin(passportLocalMongoose);
+  loginSchema.plugin(findOrCreate);
 
 
 ///models here
 
+
+const User =  mongoose.model("User",loginSchema);
+const Hospital =  mongoose.model("Hospital",hospitalSchema);
 const Plant =  mongoose.model("Plant",plantSchema);
 
 
@@ -73,7 +105,7 @@ const Plant =  mongoose.model("Plant",plantSchema);
   done(null, user);
 });
 passport.deserializeUser( function(user, done) {
-  Plant.findById(user._id, function (err, user) {
+  User.findById(user._id, function (err, user) {
     done(err, user);
   });
 });
@@ -85,7 +117,7 @@ passport.use(new LocalStrategy(
   (username, password, done) => {
 
 function ls(){
-    Plant.findOne({ username: username },   function (err, user) {
+  User.findOne({ username: username },   function (err, user) {
 
     console.log(user);
 
@@ -136,7 +168,14 @@ app.get("/register", (req, res)=>{
  });
 
 
+ app.get("/hospitalRegistration", (req, res)=>{
+  res.render("hospitalRegistration")
+});
 
+
+app.get("/newOrder", (req, res)=>{
+  res.render("newOrder")
+});
 
 
 
@@ -144,15 +183,15 @@ app.get("/register", (req, res)=>{
     const plantdata = req.body;
     console.log(req.body);
 console.log("////");
-    const len = 8;
-    const pattern = 0;
-    const id = randomId(8, 0);
-    console.log(id + "  ++++++++  ");
+    const len = 6;
+    const pattern = "0";
+    const id = randomId(len, pattern);
 
 
 
 
-    Plant.register({ username: req.body.username }, req.body.password, function (err, client) {
+
+    User.register({ username: req.body.username }, req.body.password, function (err, client) {
         if (err) {
           console.log(err);
           res.redirect("/register");
@@ -167,8 +206,8 @@ console.log("////");
           bcrypt.genSalt(saltRounds, function (err, salt) {
             bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
               console.log(hash);
-              Plant.findOneAndUpdate({ "username": req.body.username },
-              { plantID: id, password: hash }, { new: true, upsert: true }).exec();
+              User.findOneAndUpdate({ "username": req.body.username },
+              { userID: id, password: hash, role:req.body.role }, { new: true, upsert: true }).exec();
               console.log(hash + "hash");
             }); 
                
@@ -178,17 +217,33 @@ console.log("////");
         }
       });
 
-
+      function wait(ms){
+        var start = new Date().getTime();
+        var end = start;
+        while(end < start + ms) {
+          end = new Date().getTime();
+       }
+     }
       
+
+     console.log('before');
+     wait(1000);  
+     console.log('after');
+
     const plantdetails = new Plant({
+      plnatID: id,
+      role: plantdata.role,
         name: plantdata.plantName,
-        // username: plantdata.username,
+        username: plantdata.username,
+        plantCords: plantdata.plantCords,
         email: plantdata.email,
         phoneno: plantdata.phoneno,
       });
   
   
-    
+      console.log('before');
+  wait(2000);  
+  console.log('after');
   
   
   
@@ -196,11 +251,97 @@ console.log("////");
       plantdetails.save();
     
 
-
+      res.redirect("/register");
 
 
  });
  
+
+
+
+
+
+
+ app.post("/hospReg", (req, res)=>{
+  const hospdata = req.body;
+  console.log(req.body);
+console.log("////");
+  const len = 6;
+  const pattern = "0";
+  const id = randomId(len, pattern);
+
+
+
+
+
+  User.register({ username: req.body.username }, req.body.password, function (err, client) {
+      if (err) {
+        console.log(err);
+        res.redirect("/register");
+      }
+      else {
+
+        const saltRounds = 10;
+        const myPlaintextPassword = req.body.password;
+console.log( saltRounds);
+console.log(myPlaintextPassword);
+
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+          bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
+            console.log(hash);
+            User.findOneAndUpdate({ "username": req.body.username },
+            { userID: id, password: hash, role:req.body.role }, { new: true, upsert: true }).exec();
+            console.log(hash + "hash");
+          }); 
+             
+        });
+
+
+      }
+    });
+
+    function wait(ms){
+      var start = new Date().getTime();
+      var end = start;
+      while(end < start + ms) {
+        end = new Date().getTime();
+     }
+   }
+    
+
+   console.log('before');
+   wait(1000);  
+   console.log('after');
+
+  const hospdetails = new Hospital({
+    plnatID: id,
+    role: hospdata.role,
+      name: hospdata.plantName,
+      username: hospdata.username,
+      plantCords: hospdata.plantCords,
+      email: hospdata.email,
+      phoneno: hospdata.phoneno,
+    });
+
+
+    console.log('before');
+wait(2000);  
+console.log('after');
+
+
+
+
+hospdetails.save();
+  
+
+    res.redirect("/hospitalRegistration");
+
+
+});
+
+
+
+
  
 
 
