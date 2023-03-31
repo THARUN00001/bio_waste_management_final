@@ -1,17 +1,16 @@
 <%- include("partials/header") -%>
 
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">BioWasteTransit</a>
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand">Navbar</a>
+    <form class="form-inline">
       <a class="navbar-brand" href="/previousOrder">Previous orders</a>
-      <a class="navbar-brand" href="/newOrder">New order</a>  
-      <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/null/external-clean-wash-hands-flatart-icons-outline-flatarticons.png"/>
-
-    </div>
+      <a class="navbar-brand" href="/newOrder">New order </a>  
+    </form>
   </nav>
 
-<form action="/orderReceived" method="post">
+  <div class="col-lg-8">
+    
+<form action="/createOrder" method="post">
 
 
 <div class="row" style="justify-content: center;">
@@ -111,16 +110,17 @@
       </div>
 </div>
 </div>
-
-</form>
+    </form>
+  </div>
 
 <script>
     function myFunction(val, id) {
         const qValue = document.getElementById(id);
 
         document.getElementById(id+"d").innerHTML = val ;
+      
         document.getElementById(id+"td").innerHTML = val*300 ;
-
+        document.getElementById(id+"t").value = val ;
 
         const q1 =parseInt(document.getElementById("q1td").innerHTML);
         const q2 =parseInt(document.getElementById("q2td").innerHTML);
@@ -131,6 +131,7 @@
         const q7 =parseInt(document.getElementById("q7td").innerHTML); 
         const q8 =parseInt(document.getElementById("q8td").innerHTML);
         document.getElementById("ttl").innerHTML = q1+q2+q3+q4+q5+q6+q7+q8 ;
+        document.getElementById("total").value = q1+q2+q3+q4+q5+q6+q7+q8 ;
        
 
       }
