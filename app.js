@@ -160,8 +160,22 @@ setTimeout(ls, 500)
 
 
 app.get("/", (req, res)=>{
-   res.render("home")
+const usr = req.user.role;
+
+if (usr ==="Plant") {
+  res.redirect('/plant');
+} else if (usr === "Hospital") {
+  res.redirect('/hospital');
+}else{
+  res.redirect("/404");
+}
 });
+
+
+app.get("/login", (req, res)=>{
+  res.render("login")
+});
+
 
 app.get("/register", (req, res)=>{
     res.render("register")
@@ -172,11 +186,24 @@ app.get("/register", (req, res)=>{
   res.render("hospitalRegistration")
 });
 
+app.get("/hospital", (req, res)=>{
+  res.render("hospital")
+});
+
+
+app.get("/plant", (req, res)=>{
+  res.render("plant")
+});
 
 app.get("/newOrder", (req, res)=>{
   res.render("newOrder")
 });
 
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 
  app.post("/plantReg", (req, res)=>{
