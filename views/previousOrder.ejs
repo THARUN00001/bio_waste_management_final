@@ -16,6 +16,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col"> Plant Name </th>
                     <th scope="col">Red </th>
                     <th scope="col">Orange</th>
                     <th scope="col">Yellow</th>
@@ -24,6 +25,8 @@
                     <th scope="col">Black</th>
                     <th scope="col">White</th>
                     <th scope="col">Green</th>
+                    <th scope="col">Total cost</th>
+                    <th scope="col"> Status </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,6 +37,7 @@
                      
                         <tr>
                             <th scope="row">1</th>
+                            <td> <%= order.plantName  %> </td>
                             <td> <%= order.redQnt  %> </td>
                             <td><%= order.redQnt  %></td>
                             <td><%= order.yellowQnt  %></td>
@@ -41,7 +45,9 @@
                           <td>  <%= order.purpleQnt  %></td>
                           <td>  <%= order.blackQnt  %></td>
                           <td>  <%= order.whiteQnt  %></td>
-                          <td>  <%= order.greenQntQnt  %></td>
+                          <td>  <%= order.greenQnt  %></td>
+                          <td>  <%= order.total  %></td>
+                          <td>  <%= order.status  %></td>
                           </tr>
                
                     <% }) %>

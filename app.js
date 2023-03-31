@@ -52,6 +52,33 @@ const loginSchema= new mongoose.Schema({
 
   });
 
+  const orders = new mongoose.Schema({
+    status:{
+      type:String, default:"incomplete"
+    },
+    plantName: String,
+    hospitalName: String,
+    hospitalID:String,
+    orderID:String,
+    plantID:String,
+    redQnt: String,
+    redTotal: String,
+    orangeQnt: String,
+    OrangeTotal: String,
+    yellowQnt: String,
+    yellowTotal: String,
+    blueQnt: String,
+    blueTotal: String,
+    purpleQnt: String,
+    purpleTotal: String,
+    blackQnt: String,
+    blackTotal: String,
+    whiteQnt: String,
+    whiteTotal: String,
+    greenQnt: String,
+    total: Number
+  });
+  
 
 const plantSchema = new mongoose.Schema({
   plantID: {
@@ -65,34 +92,12 @@ const plantSchema = new mongoose.Schema({
     name: String,
     email:String,
     phoneno:String ,
-    plantCords: String
+    plantCords: String,
+    orders:[orders]
   });
   
 
-  const orderDetails = new mongoose.Schema({
-    
-  });
 
-
-const orders = new mongoose.Schema({
-  plantID:String,
-  redQnt: String,
-  redTotal: String,
-  orangeQnt: String,
-  OrangeTotal: String,
-  yellowQnt: String,
-  yellowTotal: String,
-  blueQnt: String,
-  blueTotal: String,
-  purpleQnt: String,
-  purpleTotal: String,
-  blackQnt: String,
-  blackTotal: String,
-  whiteQnt: String,
-  whiteTotal: String,
-  greenQnt: String,
-  total: Number
-});
 
 
   const hospitalSchema = new mongoose.Schema({
@@ -201,13 +206,15 @@ if (usr ==="Plant") {
 
 app.get("/previousOrder",(req, res)=>{
 
-  
+ 
 
   Hospital.find({"hospID":req.user.userID},(err, prevOrders)=>{
     console.log("ll");
 
+    // Plant.find({"plantID": })
+
 res.render("previousOrder",{prevOrders:prevOrders})
-  })
+  });
 
 
 });
@@ -257,13 +264,22 @@ app.post('/login', passport.authenticate('local', {
 
 app.post("/createOrder", (req, res)=>{
  const orderDetails = req.body;
- const usr = req.user.userID;
  console.log(orderDetails);
+ const usr = req.user.userID;
+ console.log("plantID "+req.body.plantID);
+const id = randomId(6, "0")
+const txt = orderDetails.plant;
+const obj = JSON.parse(txt);
+console.log(obj);
 
 
 Hospital.findOneAndUpdate({"hospID": usr},{
   $push: {
     "orders": {
+      "hospitalName" : req.user.username,
+      "plantName":obj.plantName, 
+        "hospitalID":usr,
+        "orderID": id,
          "total": orderDetails.total,
           "redQnt": orderDetails.redQnt,
           "redTotal": orderDetails.redtotal,
@@ -280,7 +296,7 @@ Hospital.findOneAndUpdate({"hospID": usr},{
           "whiteQnt": orderDetails.whiteQnt,
           "whiteTotal": orderDetails.whiteTotal,
           "greenQnt": orderDetails.greenQnt,
-          "plantID": orderDetails.plantID
+          "plantID": obj.plantID
       }
     }
   
@@ -288,35 +304,42 @@ Hospital.findOneAndUpdate({"hospID": usr},{
 
 },{new: true, upsert: true }).exec();
 
-// Hospital.findOneAndUpdate({"hospID": usr},{
-//   $push: {
-//     "orders.orderDetails" :{
-//         "redQnt": orderDetails.redQnt,
-//         "redTotal": orderDetails.redtotal,
-//         "orangeQnt": orderDetails.orangeQnt,
-//         "OrangeTotal": orderDetails.OrangeTotal,
-//         "yellowQnt": orderDetails.yellowQnt,
-//         "yellowTotal": orderDetails.yellowTotal,
-//         "blueQnt": orderDetails.blueQnt,
-//         "blueTotal": orderDetails.blueTotal,
-//         "purpleQnt": orderDetails.purpleQnt,
-//         "purpleTotal": orderDetails.purpleTotal,
-//         "blackQnt": orderDetails.blackQnt,
-//         "blackTotal": orderDetails.blackTotal,
-//         "whiteQnt": orderDetails.whiteQnt,
-//         "whiteTotal": orderDetails.whiteTotal,
-//         "greenQnt": orderDetails.greenQnt,
-    
-//     }
-//   }
 
 
-// },{new: true, upsert: true }).exec();
+
+
+Plant.findOneAndUpdate({"plantID": req.body.plantID},{
+  $push: {
+    "orders": {
+        "hospitalID":usr,
+        "orderID": id,
+         "total": orderDetails.total,
+          "redQnt": orderDetails.redQnt,
+          "redTotal": orderDetails.redtotal,
+          "orangeQnt": orderDetails.orangeQnt,
+          "OrangeTotal": orderDetails.OrangeTotal,
+          "yellowQnt": orderDetails.yellowQnt,
+          "yellowTotal": orderDetails.yellowTotal,
+          "blueQnt": orderDetails.blueQnt,
+          "blueTotal": orderDetails.blueTotal,
+          "purpleQnt": orderDetails.purpleQnt,
+          "purpleTotal": orderDetails.purpleTotal,
+          "blackQnt": orderDetails.blackQnt,
+          "blackTotal": orderDetails.blackTotal,
+          "whiteQnt": orderDetails.whiteQnt,
+          "whiteTotal": orderDetails.whiteTotal,
+          "greenQnt": orderDetails.greenQnt,
+          "plantID": obj.plantID,
+      
+      }
+    }
+},{new: true, upsert: true }).exec();
 
 
 res.redirect("/hospital");
 
 });
+
 
 
  app.post("/plantReg", (req, res)=>{
