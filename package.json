@@ -23,5 +23,14 @@
     "passport-local-mongoose": "^8.0.0",
     "random-id": "^1.0.4"
   },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/THARUN00001/bio_waste_management_final.git"
+  },
+  "bugs": {
+    "url": "https://github.com/THARUN00001/bio_waste_management_final/issues"
+  },
+  "homepage": "https://github.com/THARUN00001/bio_waste_management_final#readme",
   "description": ""
 }
