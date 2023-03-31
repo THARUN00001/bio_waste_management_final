@@ -12,103 +12,130 @@
     
 <form action="/createOrder" method="post">
 
-
-<div class="row" style="justify-content: center;">
-<div class="col-lg-8">
-    <table style="/* From https://css.glass */
-    background: rgb(103, 102, 102, 0.4);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(6.3px);
-    -webkit-backdrop-filter: blur(6.3px);" class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Sl.no</th>
-            <th scope="col">Type of waste</th>
-            <th scope="col">Quantity (per box)</th>
-            <th scope="col">Price (in INR)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td style="color: red;">Anatomical Waste</td>
-            <td> <input style="width: 50px ;" id="q1" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q1d"> 0 </span> x 300 =  <span id="q1td"> 0 </span> </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td style="color: orange;">Clinical Waste</td>
-            <td> <input style="width: 50px ;" id="q2" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q2d"> 0 </span> x 300 =  <span id="q2td"> 0 </span> </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td style="color: yellow;">Highly Infectious Waste</td>
-            <td> <input style="width: 50px ;"id="q3" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q3d"> 0 </span> x 300 =  <span id="q3td"> 0 </span> </td>
-          </tr>  
-          
-          <tr>
-            <th scope="row">4</th>
-            <td style="color: blue;">Medicines/Drugs</td>
-            <td> <input style="width: 50px ;" id="q4" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q4d"> 0 </span> x 300 =  <span id="q4td"> 0 </span> </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td style="color: purple;">Cytotoxic Product Waste</td>
-            <td> <input style="width: 50px ;" id="q5" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q5d"> 0 </span> x 300 =  <span id="q5td"> 0 </span> </td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td style="color: black;">Municipal Waste</td>
-            <td> <input style="width: 50px ;" id="q6" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q6d"> 0 </span> x 300 =  <span id="q6td"> 0 </span> </td>
-          </tr>
-          <tr>
-            <th scope="row">7</th>
-            <td style="color: white;">Dental Waste</td>
-            <td> <input style="width: 50px ;" id="q7" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q7d"> 0 </span> x 300 =  <span id="q7td"> 0 </span> </td>
-          </tr>  
-          <tr>
-            <th scope="row">8</th>
-            <td style="color: green;">Other Waste</td>
-            <td> <input style="width: 50px ;" id="q8" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q8d"> 0 </span> x 300 =  <span id="q8td"> 0 </span> </td>
-          </tr>        
-            <tr>
-            <th scope="row"></th>
-            <td style="color: white;"></td>
-            <td> </td>
-            <td> Total = <span id="ttl">  </span> </td>
-          </tr>
-
-        </tbody>
-      </table>
-      <div class="row">
-        <div class="col-lg-4">
-            <div class="input-group mb-3">
-                <div class="form-floating">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Select Plant
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div> 
-                      </div>        
-                </div>
-              </div>
-        </div>
+    
+    <div class="row" style="justify-content: center;">
+    <div class="col-lg-8">
+        <table style="/* From https://css.glass */
+        background: rgb(103, 102, 102, 0.4);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6.3px);
+        -webkit-backdrop-filter: blur(6.3px);" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Type of waste</th>
+                <th scope="col">Quantity (per box)</th>
+                <th scope="col">Price (in INR)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td style="color: red;">Anatomical Waste</td>
+                <td> <input name="redQnt" style="width: 50px ;" id="q1" type="text" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q1d"> 0 </span> x 300 =  <span id="q1td" > 0 </span> <input name="redTotal" style="display: none;" type="text" id="q1t" value=""> </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td style="color: orange;">Clinical Waste</td>
+                <td> <input name="orangeQnt" style="width: 50px ;" id="q2" type="text" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q2d"> 0 </span> x 300 =  <span id="q2td" > 0 </span> <input style="display: none;" name="OrangeTotal" type="text" id="q2t" value=""> </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td style="color: yellow;">Highly Infectious Waste</td>
+                <td> <input name="yellowQnt" style="width: 50px ;"id="q3" type="text" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q3d"> 0 </span> x 300 =  <span id="q3td" > 0 </span> <input style="display: none;" type="text" name="yellowTotal" id="q3t" value=""> </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td style="color: blue;">Medicines/Drugs</td>
+                <td> <input style="width: 50px ;" id="q4" name="blueQnt" type="text" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q4d"> 0 </span> x 300 =  <span id="q4td"> 0 </span> <input style="display: none;" type="text" id="q4t" name="blueTotal" value=""> </td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td style="color: purple;">Cytotoxic Product Waste</td>
+                <td> <input style="width: 50px ;" id="q5" name="purpleQnt" type="text" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q5d"> 0 </span> x 300 =  <span id="q5td"> 0 </span> <input style="display: none;" type="text" id="q5t" name="purpleTotal" value=""> </td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td style="color: black;">Municipal Waste</td>
+                <td> <input style="width: 50px ;" id="q6" type="text" name="blackQnt" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q6d"> 0 </span> x 300 =  <span id="q6td"> 0 </span> <input style="display: none;" type="text" name="blackTotal" id="q6t" value=""> </td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td style="color: white;">Dental Waste</td>
+                <td> <input style="width: 50px ;" id="q7" name="whiteQnt" type="text" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q7d"> 0 </span> x 300 =  <span id="q7td"> 0 </span> <input style="display: none;" type="text" id="q7t" name="whiteTotal" value=""> </td>
+              </tr>  
+              <tr>
+                <th scope="row">8</th>
+                <td style="color: green;">Other Waste</td>
+                <td> <input style="width: 50px ;" id="q8" name="greenQnt" type="text" onchange="myFunction(this.value, this.id)"> </td>
+                <td> <span id="q8d"> 0 </span> x 300 =  <span id="q8td"> 0 </span> <input style="display: none;" name="greenTotal" type="text" id="q8t" value=""> </td>
+              </tr>        
+                <tr>
+                <th scope="row"></th>
+                <td style="color: white;"></td>
+                <td> </td>
+                <td> Total = <span id="ttl">  </span> <input type="text" value="" id="total" name="total"> </td>
+              </tr>
+    
+            </tbody>
+          </table>
     </div>
-      <div class="col-lg-3">
-        <button class="btn btn-success" type="submit">Continue</button> 
-      </div>
+    </div>
+    
+    
+<div class="row" style="justify-content: center;">
+
+    <div class="col-lg-4">
+
+       
+        <table class="table table-hover ">
+            <thead>
+              <tr>
+              
+                <th scope="col"> # </th>
+                <th scope="col">name</th>
+
+ 
+              </tr>
+            </thead>
+            <tbody>
+    
+                <% plantinfo.forEach(function(info, index){ %> 
+
+
+              <tr>
+            <td>    <input type="radio" name="plantID" value= "<%= info.plantID %>"  id="">  </td>
+            <td> <input style="display: none;" type="radio" name="plantName" value= "<%= info.name %> "  id=""> <%= info.name %>  </td>
+
+
+          
+          </tr>
+     <% }) %>
+            </tbody>
+          </table>
+
+
+
+    
+  
+
+
+
+
+</div>
+<div class="col-lg-4">
+    <button class="btn btn-primary">
+        Order
+    </button>
+
 </div>
 </div>
     </form>
@@ -137,7 +164,6 @@
 
       }
 
-     
 
 </script>
 
