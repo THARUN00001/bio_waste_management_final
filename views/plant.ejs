@@ -1,53 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-</head>
-<body>
+<%- include("partials/header") -%>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">BioWasteTransit</a>
-          <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/null/external-clean-wash-hands-flatart-icons-outline-flatarticons.png"/>
-        </div>
-      </nav>
-    
-    <div class="container-fluid">
-    
-     <div style="justify-content: center" class="row">
-    
-        <div class="col-lg-8">
-    
-            <div class="row mt-5 mb-3">
-                <h1>
-                    
-                </h1>
+<style>
+    .mo{
+        background-color: blueviolet !important;
+        padding: 50px;
+        margin: 50px;
+        border-radius: 25px;
+    }
+
+    /* body{
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-image: url('https://images.pexels.com/photos/247786/pexels-photo-247786.jpeg?auto=compress&cs=tinysrgb&w=600');
+    } */
+</style>
+
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand">Navbar</a>
+    <form class="form-inline">
+      <a class="navbar-brand" href="/previousOrder">Previous orders</a>
+      <a class="navbar-brand" href="/newOrder">New order </a>  
+    </form>
+  </nav>
+
+  <div class="row" style="width: 100%;">
+    <div style="background-color: black; height: 25%; width: 100%; padding: 25px;" class="col-lg-12">
+            <div class="col-lg-12">
+                <h2 style="color: aliceblue;">{Hospital name}</h2>
+
+                <hr style="color: aliceblue; width: 100%;">
+
+                <h5 style="color: aliceblue;">
+                    Phno. : <span> 8846464648 </span>
+                </h5>
+
             </div>
+    </div>
+</div>
+
+  <div   class="main container">
+
+
+
+
+<div class="row">
     
+       
+            <div  class="col-lg-4 mo">
+                <center>
+                    <h1>
+                        gg
+                    </h1>
+                </center>
+            </div>
+            <br>
 
+            <div  class="col-lg-4 mo">
+                <center>
+                    gg
+                </center>
+            </div>
+       
+    </div>
+    <div class="row">
+    
+       
+        <div  class="col-lg-4 mo">
+            <center>
+                gg
+            </center>
+        </div>
+        <br>
 
+        <div  class="col-lg-4 mo">
+            <center>
+                gg
+            </center>
+        </div>
+   
+</div>
+</div>
 
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-</body>
-</html>
+<%- include("partials/footer") -%>
