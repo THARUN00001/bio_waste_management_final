@@ -54,7 +54,7 @@ const loginSchema= new mongoose.Schema({
 
 
 const plantSchema = new mongoose.Schema({
-  plnatID: {
+  plantID: {
     type: String, default:"" 
   },
   role: {
@@ -69,9 +69,34 @@ const plantSchema = new mongoose.Schema({
   });
   
 
+  const orderDetails = new mongoose.Schema({
+    
+  });
+
+
+const orders = new mongoose.Schema({
+  plantName:String,
+  redQnt: String,
+  redTotal: String,
+  orangeQnt: String,
+  OrangeTotal: String,
+  yellowQnt: String,
+  yellowTotal: String,
+  blueQnt: String,
+  blueTotal: String,
+  purpleQnt: String,
+  purpleTotal: String,
+  blackQnt: String,
+  blackTotal: String,
+  whiteQnt: String,
+  whiteTotal: String,
+  greenQnt: String,
+  total: Number
+});
+
 
   const hospitalSchema = new mongoose.Schema({
-    plnatID: {
+    hospID: {
       type: String, default:"" 
     },
     role: {
@@ -82,7 +107,9 @@ const plantSchema = new mongoose.Schema({
       name: String,
       email:String,
       phoneno:String ,
-      plantCords: String
+      plantCords: String,
+      orders:[orders]
+
     });
     
 
@@ -177,6 +204,7 @@ app.get("/login", (req, res)=>{
 });
 
 
+
 app.get("/register", (req, res)=>{
     res.render("register")
  });
@@ -196,14 +224,86 @@ app.get("/plant", (req, res)=>{
 });
 
 app.get("/newOrder", (req, res)=>{
-  res.render("newOrder")
+
+  Plant.find({}, (err, plantinfo)=>{
+    res.render("newOrder", {plantinfo:plantinfo});
+  });
+
+  
 });
 
+app.get("/previousOrder", (req, res)=>{
+  res.render("previousOrder")
+});
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login'
 }));
+
+
+app.post("/createOrder", (req, res)=>{
+ const orderDetails = req.body;
+ const usr = req.user.userID;
+ console.log(orderDetails);
+
+
+Hospital.findOneAndUpdate({"hospID": usr},{
+  $push: {
+    "orders": {
+         "total": orderDetails.total,
+          "redQnt": orderDetails.redQnt,
+          "redTotal": orderDetails.redtotal,
+          "orangeQnt": orderDetails.orangeQnt,
+          "OrangeTotal": orderDetails.OrangeTotal,
+          "yellowQnt": orderDetails.yellowQnt,
+          "yellowTotal": orderDetails.yellowTotal,
+          "blueQnt": orderDetails.blueQnt,
+          "blueTotal": orderDetails.blueTotal,
+          "purpleQnt": orderDetails.purpleQnt,
+          "purpleTotal": orderDetails.purpleTotal,
+          "blackQnt": orderDetails.blackQnt,
+          "blackTotal": orderDetails.blackTotal,
+          "whiteQnt": orderDetails.whiteQnt,
+          "whiteTotal": orderDetails.whiteTotal,
+          "greenQnt": orderDetails.greenQnt,
+      
+      }
+    }
+  
+  
+
+},{new: true, upsert: true }).exec();
+
+// Hospital.findOneAndUpdate({"hospID": usr},{
+//   $push: {
+//     "orders.orderDetails" :{
+//         "redQnt": orderDetails.redQnt,
+//         "redTotal": orderDetails.redtotal,
+//         "orangeQnt": orderDetails.orangeQnt,
+//         "OrangeTotal": orderDetails.OrangeTotal,
+//         "yellowQnt": orderDetails.yellowQnt,
+//         "yellowTotal": orderDetails.yellowTotal,
+//         "blueQnt": orderDetails.blueQnt,
+//         "blueTotal": orderDetails.blueTotal,
+//         "purpleQnt": orderDetails.purpleQnt,
+//         "purpleTotal": orderDetails.purpleTotal,
+//         "blackQnt": orderDetails.blackQnt,
+//         "blackTotal": orderDetails.blackTotal,
+//         "whiteQnt": orderDetails.whiteQnt,
+//         "whiteTotal": orderDetails.whiteTotal,
+//         "greenQnt": orderDetails.greenQnt,
+    
+//     }
+//   }
+
+
+// },{new: true, upsert: true }).exec();
+
+
+res.redirect("/hospital");
+
+});
 
 
  app.post("/plantReg", (req, res)=>{
@@ -258,7 +358,7 @@ console.log("////");
      console.log('after');
 
     const plantdetails = new Plant({
-      plnatID: id,
+      plantID: id,
       role: plantdata.role,
         name: plantdata.plantName,
         username: plantdata.username,
@@ -341,7 +441,7 @@ console.log(myPlaintextPassword);
    console.log('after');
 
   const hospdetails = new Hospital({
-    plnatID: id,
+    hospID: id,
     role: hospdata.role,
       name: hospdata.plantName,
       username: hospdata.username,
