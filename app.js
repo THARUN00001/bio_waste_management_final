@@ -142,7 +142,7 @@ app.get("/register", (req, res)=>{
 
  app.post("/plantReg", (req, res)=>{
     const plantdata = req.body;
-    console.log(req.body.username);
+    console.log(req.body);
 console.log("////");
     const len = 8;
     const pattern = 0;
