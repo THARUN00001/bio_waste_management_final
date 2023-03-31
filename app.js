@@ -75,7 +75,7 @@ const plantSchema = new mongoose.Schema({
 
 
 const orders = new mongoose.Schema({
-  plantName:String,
+  plantID:String,
   redQnt: String,
   redTotal: String,
   orangeQnt: String,
@@ -140,7 +140,7 @@ passport.deserializeUser( function(user, done) {
 
 
 
-AwWWpassport.use(new LocalStrategy(
+passport.use(new LocalStrategy(
   (username, password, done) => {
 
 function ls(){
@@ -199,6 +199,19 @@ if (usr ==="Plant") {
 });
 
 
+app.get("/previousOrder",(req, res)=>{
+
+  
+
+  Hospital.find({"hospID":req.user.userID},(err, prevOrders)=>{
+    console.log("ll");
+
+res.render("previousOrder",{prevOrders:prevOrders})
+  })
+
+
+});
+
 app.get("/login", (req, res)=>{
   res.render("login")
 });
@@ -220,7 +233,7 @@ app.get("/hospital", (req, res)=>{
 
 
 app.get("/plant", (req, res)=>{
-  res.render("plant")
+  res.render("plant");
 });
 
 app.get("/newOrder", (req, res)=>{
@@ -232,9 +245,9 @@ app.get("/newOrder", (req, res)=>{
   
 });
 
-app.get("/previousOrder", (req, res)=>{
-  res.render("previousOrder")
-});
+// app.get("/previousOrder", (req, res)=>{
+//   res.render("previousOrder")
+// });
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
@@ -267,7 +280,7 @@ Hospital.findOneAndUpdate({"hospID": usr},{
           "whiteQnt": orderDetails.whiteQnt,
           "whiteTotal": orderDetails.whiteTotal,
           "greenQnt": orderDetails.greenQnt,
-      
+          "plantID": orderDetails.plantID
       }
     }
   
