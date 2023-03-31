@@ -32,33 +32,76 @@
 
 <div class="row" style="justify-content: center;">
 <div class="col-lg-8">
-    <table class="table table-hover">
+    <table style="/* From https://css.glass */
+    background: rgb(103, 102, 102, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.3px);
+    -webkit-backdrop-filter: blur(6.3px);" class="table table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Type of waste</th>
-            <th scope="col">Quantity</th>
+            <th scope="col">Quantity (per box)</th>
             <th scope="col">Price (in INR)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
+            <td style="color: red;">Anatomical Waste</td>
             <td> <input style="width: 50px ;" id="q1" type="text" onchange="myFunction(this.value, this.id)"> </td>
             <td> <span id="q1d"> 0 </span> x 300 =  <span id="q1td"> 0 </span> </td>
           </tr>
           <tr>
             <th scope="row">2</th>
-            <td>Jacob</td>
-            <td> <input id="q2" type="text" onchange="myFunction(this.value, this.id)"> </td>
-            <td> <span id="q2d"> 6 </span> x 300 =  <span id="q2td">  </span> </td>
+            <td style="color: orange;">Clinical Waste</td>
+            <td> <input style="width: 50px ;" id="q2" type="text" onchange="myFunction(this.value, this.id)"> </td>
+            <td> <span id="q2d"> 0 </span> x 300 =  <span id="q2td"> 0 </span> </td>
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>100</td>
+            <td style="color: yellow;">Highly Infectious Waste</td>
+            <td> <input style="width: 50px ;"id="q3" type="text" onchange="myFunction(this.value, this.id)"> </td>
+            <td> <span id="q3d"> 0 </span> x 300 =  <span id="q3td"> 0 </span> </td>
           </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td style="color: blue;">Medicines/Drugs</td>
+            <td> <input style="width: 50px ;" id="q4" type="text" onchange="myFunction(this.value, this.id)"> </td>
+            <td> <span id="q4d"> 0 </span> x 300 =  <span id="q4td"> 0 </span> </td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td style="color: purple;">Cytotoxic Product Waste</td>
+            <td> <input style="width: 50px ;" id="q5" type="text" onchange="myFunction(this.value, this.id)"> </td>
+            <td> <span id="q5d"> 0 </span> x 300 =  <span id="q5td"> 0 </span> </td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td style="color: black;">Municipal Waste</td>
+            <td> <input style="width: 50px ;" id="q6" type="text" onchange="myFunction(this.value, this.id)"> </td>
+            <td> <span id="q6d"> 0 </span> x 300 =  <span id="q6td"> 0 </span> </td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td style="color: white;">Dental Waste</td>
+            <td> <input style="width: 50px ;" id="q7" type="text" onchange="myFunction(this.value, this.id)"> </td>
+            <td> <span id="q7d"> 0 </span> x 300 =  <span id="q7td"> 0 </span> </td>
+          </tr>  
+          <tr>
+            <th scope="row">8</th>
+            <td style="color: green;">Other Waste</td>
+            <td> <input style="width: 50px ;" id="q8" type="text" onchange="myFunction(this.value, this.id)"> </td>
+            <td> <span id="q8d"> 0 </span> x 300 =  <span id="q8td"> 0 </span> </td>
+          </tr>        
+            <tr>
+            <th scope="row"></th>
+            <td style="color: white;"></td>
+            <td> </td>
+            <td> Total = <span id="ttl">  </span> </td>
+          </tr>
+
         </tbody>
       </table>
 </div>
@@ -72,7 +115,22 @@
 
         document.getElementById(id+"d").innerHTML = val ;
         document.getElementById(id+"td").innerHTML = val*300 ;
-}
+
+
+        const q1 =parseInt(document.getElementById("q1td").innerHTML);
+        const q2 =parseInt(document.getElementById("q2td").innerHTML);
+        const q3 =parseInt(document.getElementById("q3td").innerHTML);
+        const q4 =parseInt(document.getElementById("q4td").innerHTML);
+        const q5 =parseInt(document.getElementById("q5td").innerHTML);
+        const q6 =parseInt(document.getElementById("q6td").innerHTML);
+        const q7 =parseInt(document.getElementById("q7td").innerHTML); 
+        const q8 =parseInt(document.getElementById("q8td").innerHTML);
+        document.getElementById("ttl").innerHTML = q1+q2+q3+q4+q5+q6+q7+q8 ;
+       
+
+      }
+
+
 </script>
 
 <%- include("partials/footer") -%>
