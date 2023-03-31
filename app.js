@@ -140,7 +140,7 @@ passport.deserializeUser( function(user, done) {
 
 
 
-passport.use(new LocalStrategy(
+AwWWpassport.use(new LocalStrategy(
   (username, password, done) => {
 
 function ls(){
