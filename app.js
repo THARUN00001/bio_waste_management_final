@@ -75,23 +75,57 @@ const plantSchema = new mongoose.Schema({
 
 
 const orders = new mongoose.Schema({
-  plantID:String,
-  redQnt: String,
-  redTotal: String,
-  orangeQnt: String,
-  OrangeTotal: String,
-  yellowQnt: String,
-  yellowTotal: String,
-  blueQnt: String,
-  blueTotal: String,
-  purpleQnt: String,
-  purpleTotal: String,
-  blackQnt: String,
-  blackTotal: String,
-  whiteQnt: String,
-  whiteTotal: String,
-  greenQnt: String,
-  total: Number
+  plantID:{
+    type:String, default: 0
+  },
+  redQnt: {
+    type:String, default: 0
+  },
+  redTotal: {
+    type:String, default: 0
+  },
+  orangeQnt: {
+    type:String, default: 0
+  },
+  OrangeTotal: {
+    type:String, default: 0
+  },
+  yellowQnt:{
+    type:String, default: 0
+  },
+  yellowTotal: {
+    type:String, default: 0
+  },
+  blueQnt: {
+    type:String, default: 0
+  },
+  blueTotal:{
+    type:String, default: 0
+  },
+  purpleQnt: {
+    type:String, default: 0
+  },
+  purpleTotal: {
+    type:String, default: 0
+  },
+  blackQnt: {
+    type:String, default: 0
+  },
+  blackTotal: {
+    type:String, default: 0
+  },
+  whiteQnt: {
+    type:String, default: 0
+  },
+  whiteTotal: {
+    type:String, default: 0
+  },
+  greenQnt: {
+    type:String, default: 0
+  },
+  total: {
+    type:Number, default: 0
+  }
 });
 
 
@@ -254,6 +288,12 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/login'
 }));
 
+app.post('/logout', function(req, res, next){
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 
 app.post("/createOrder", (req, res)=>{
  const orderDetails = req.body;

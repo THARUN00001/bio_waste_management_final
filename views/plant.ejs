@@ -1,12 +1,28 @@
 <%- include("partials/header") -%>
 
+<nav style="background-color: grey;" class="navbar navbar-dark  justify-content-between">
+    <a href="" class="navbar-brand">BioWasteTransit</a>
+    <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/null/external-clean-wash-hands-flatart-icons-outline-flatarticons.png"/>
+
+    <form class="form-inline">
+      <a class="navbar-brand" href="/logout"><img src="https://img.icons8.com/color-glass/48/000000/power-off-button.png"/></a> 
+    </form>
+  </nav>
 <style>
     .mo{
-        background-color: blueviolet !important;
+        background-color: rgb(104, 156, 176) !important;
         padding: 50px;
         margin: 50px;
         border-radius: 25px;
+        color: white;
     }
+
+
+    a{
+        color: white;
+        text-decoration: none;
+    }
+
 
     /* body{
         width: 100%;
@@ -16,22 +32,26 @@
     } */
 </style>
 
-  <nav class="navbar navbar-light bg-light justify-content-between">
-    <a class="navbar-brand">Navbar</a>
-    <form class="form-inline">
-      <a class="navbar-brand" href="/previousOrder">Previous orders</a>
-      <a class="navbar-brand" href="/newOrder">New order </a>  
-    </form>
-  </nav>
+ 
 
-  <div class="row" style="width: 100%;">
+  <div class="row" style="width: 100%; ;margin-right: 0px;margin-left: 0px;">
     <div style="background-color: black; height: 25%; width: 100%; padding: 25px;" class="col-lg-12">
             <div class="col-lg-12">
-                <h2 style="color: aliceblue;">{Hospital name}</h2>
+                <h2 style="color: white;">{Plant name}</h2>
 
-                <hr style="color: aliceblue; width: 100%;">
+                <hr style="color: white; width: 100%;">
+                <h5 style="color: white;">
+                    Username:{}
+                </h5>
+                <h5 style="color: white;">
+Email Id:{}                </h5>
+</h5>
+<h5 style="color: white;">
+Address:{}                </h5>
 
-                <h5 style="color: aliceblue;">
+
+
+                <h5 style="color: white;">
                     Phno. : <span> 8846464648 </span>
                 </h5>
 
@@ -49,16 +69,20 @@
        
             <div  class="col-lg-4 mo">
                 <center>
-                    <h1>
-                        gg
-                    </h1>
+<span><img src="https://img.icons8.com/ios/78/null/event-accepted-tentatively.png"/></span>
+                    <h2>
+                        <a href=""> Upcoming Orders</a>
+                    </h2>
                 </center>
             </div>
             <br>
 
             <div  class="col-lg-4 mo">
                 <center>
-                    gg
+<span><img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/null/external-Verified-Drivers-taxi-service-glyph-silhouettes-icons-papa-vector.png"/></span>                   
+                <h2>
+                    <a href=""> Manage Drivers</a>
+                </h2> 
                 </center>
             </div>
        
@@ -68,14 +92,21 @@
        
         <div  class="col-lg-4 mo">
             <center>
-                gg
+                <span><img src="https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/78/null/external-track-delivery-ecommerce-basic-1-sbts2018-lineal-color-sbts2018.png"/></span>
+                <h2>
+                    <a href=""> Track Orders  </a>
+            </h2>
             </center>
         </div>
         <br>
 
         <div  class="col-lg-4 mo">
             <center>
-                gg
+                <span><img src="https://img.icons8.com/external-icongeek26-outline-icongeek26/78/null/external-box-logistics-delivery-icongeek26-outline-icongeek26.png"/></span>
+
+                <h2>
+              <a href="">  Completed Orders</a>
+            </h2>
             </center>
         </div>
    
