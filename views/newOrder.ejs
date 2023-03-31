@@ -3,32 +3,16 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">BioWasteTransit</a>
       <a class="navbar-brand" href="/previousOrder">Previous orders</a>
-      <a class="navbar-brand" href="/newOrder">New order </a>  
+      <a class="navbar-brand" href="/newOrder">New order</a>  
+      <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/null/external-clean-wash-hands-flatart-icons-outline-flatarticons.png"/>
+
     </div>
   </nav>
 
 <form action="/orderReceived" method="post">
 
-<div class="row">
-    <div class="col-lg-4">
-        <div class="input-group mb-3">
-            <div class="form-floating">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Select Plant
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>        
-            </div>
-          </div>
-    </div>
-</div>
 
 <div class="row" style="justify-content: center;">
 <div class="col-lg-8">
@@ -40,7 +24,7 @@
     -webkit-backdrop-filter: blur(6.3px);" class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">Sl.no</th>
             <th scope="col">Type of waste</th>
             <th scope="col">Quantity (per box)</th>
             <th scope="col">Price (in INR)</th>
@@ -104,6 +88,27 @@
 
         </tbody>
       </table>
+      <div class="row">
+        <div class="col-lg-4">
+            <div class="input-group mb-3">
+                <div class="form-floating">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Select Plant
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>        
+                </div>
+              </div>
+        </div>
+    </div>
+      <div class="col-lg-3">
+        <button class="btn btn-success" type="submit">Continue</button> 
+      </div>
 </div>
 </div>
 
@@ -130,6 +135,7 @@
 
       }
 
+     
 
 </script>
 
